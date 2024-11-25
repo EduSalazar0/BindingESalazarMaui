@@ -1,25 +1,43 @@
-﻿namespace BindingESalazarMaui
+﻿using BindingESalazarMaui.Interfaces;
+using BindingESalazarMaui.Models;
+using BindingESalazarMaui.Repositories;
+
+namespace BindingESalazarMaui
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        IEstudianteUdlaRepository _estudianteUdlaRepository;
+        EstudianteUdla estudiante = new EstudianteUdla();
 
         public MainPage()
         {
+            _estudianteUdlaRepository = new EstudianteUdlaPorArchivosRepository();
             InitializeComponent();
+            estudiante = _estudianteUdlaRepository.DevuelveEstudianteUdla();
+            BindingContext = estudiante;
         }
-
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
         {
-            count++;
+            EstudianteUdla estu = new EstudianteUdla
+            {
+                Id = "1",
+                Name="Eduardo",
+                Carrera="Ingenieria de Software"
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+            };
+            bool guardar_estudiante = _estudianteUdlaRepository.CrearEstudianteUdla(estu);
+
+            if (guardar_estudiante)
+            {
+                await DisplayAlert("Alerta", "Todo muy bien", "Ok");
+            }
             else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            {
+                await DisplayAlert("Alerta", "Negado papa", "Ok");
+            }
+            
         }
-    }
 
+
+    }
 }
