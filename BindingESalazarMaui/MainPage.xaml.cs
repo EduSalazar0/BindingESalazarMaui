@@ -20,9 +20,9 @@ namespace BindingESalazarMaui
         {
             EstudianteUdla estu = new EstudianteUdla
             {
-                Id = "1",
-                Name="Eduardo",
-                Carrera="Ingenieria de Software"
+                Id = editor_Id.Text,
+                Name = editor_Name.Text,
+                Carrera = editor_Carrera.Text,
 
             };
             bool guardar_estudiante = _estudianteUdlaRepository.CrearEstudianteUdla(estu);
@@ -30,10 +30,12 @@ namespace BindingESalazarMaui
             if (guardar_estudiante)
             {
                 await DisplayAlert("Alerta", "Todo muy bien", "Ok");
+                Navigation.PushAsync(new MainPage());
             }
             else
             {
                 await DisplayAlert("Alerta", "Negado papa", "Ok");
+                Navigation.PushAsync(new MainPage());
             }
             
         }

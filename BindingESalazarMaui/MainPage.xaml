@@ -16,12 +16,27 @@
             <Label
                 x:Name="Label_Id"
                 Text="{Binding Id}"/>
+            <Editor
+                x:Name="editor_Id"
+                Placeholder="Ingrese el ID"
+                AutoSize="TextChanges"
+                HeightRequest="25"/>
             <Label
                 x:Name="Label_Nombre"
                 Text="{Binding Name}"/>
+            <Editor
+                x:Name="editor_Name"
+                Placeholder="Ingrese el Nombre"
+                AutoSize="TextChanges"
+                HeightRequest="25"/>
             <Label
                 x:Name="Label_Carrera"
                 Text="{Binding Carrera}"/>
+            <Editor
+                x:Name="editor_Carrera"
+                Placeholder="Ingrese su Carrera"
+                AutoSize="TextChanges"
+                HeightRequest="25"/>
             <Button
                 x:Name="GuardarEstudiante"
                 Text="Guardar Estudiante"
