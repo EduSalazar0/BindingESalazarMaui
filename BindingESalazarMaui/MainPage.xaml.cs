@@ -22,7 +22,7 @@ namespace BindingESalazarMaui
             {
                 Id = editor_Id.Text,
                 Name = editor_Name.Text,
-                Carrera = editor_Carrera.Text,
+                Carrera = editor_Carrera.Text,  
 
             };
             bool guardar_estudiante = _estudianteUdlaRepository.CrearEstudianteUdla(estu);
