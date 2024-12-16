@@ -49,10 +49,15 @@ namespace BindingESalazarMaui.Repositories
             
         }
 
-        public EstudianteUdla DevuelveEstudianteUdla()
+        public EstudianteUdla DevuelveEstudianteUdla(string id)
         {
+            var estudiantes = DevuelveListadoEstudiantes().ToList();
+            if(estudiantes.Any(item => item.Id == id))
+            {
+                return estudiantes.Find(item => item.Id == id);
+            }
 
-            throw new NotImplementedException();
+            return new EstudianteUdla();
         }
 
         public IEnumerable<EstudianteUdla> DevuelveListadoEstudiantes()
@@ -78,6 +83,11 @@ namespace BindingESalazarMaui.Repositories
                 throw;
             }
             
+        }
+
+        public EstudianteUdla DevuelveEstudianteUdla()
+        {
+            throw new NotImplementedException();
         }
     }
 }

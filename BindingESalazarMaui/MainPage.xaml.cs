@@ -14,7 +14,9 @@ namespace BindingESalazarMaui
             _estudianteUdlaRepository = new EstudianteUdlaSQLiteRepository();
             InitializeComponent();
             //estudiante = _estudianteUdlaRepository.DevuelveEstudianteUdla();
-            BindingContext = estudiante;
+            var estudiantesUDLA = _estudianteUdlaRepository.DevuelveListadoEstudiantes().ToList();
+            BindingContext = this;
+            
         }
         private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
         {
