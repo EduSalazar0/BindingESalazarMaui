@@ -23,7 +23,8 @@ namespace BindingESalazarMaui.Repositories
         public void Init() //Metodo de definicion del path donde se guardara el archivo referente a la base de datos
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory,NombreBD);
-            _connection = new SQLiteConnection(dbPath);
+            _connection = new SQLiteConnection(dbPath); //Valida si existe, si no existe crea y si si existe solo lo abre o valida
+            _connection.CreateTable<EstudianteUdla>();
         }
         public bool ActualizarEstudianteUdla(EstudianteUdla estudiante)
         {
@@ -32,22 +33,51 @@ namespace BindingESalazarMaui.Repositories
 
         public bool CrearEstudianteUdla(EstudianteUdla estudiante)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int insert = _connection.Insert(estudiante);
+                if(insert > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch 
+            {
+                throw;
+            }
+            
         }
 
         public EstudianteUdla DevuelveEstudianteUdla()
         {
+
             throw new NotImplementedException();
         }
 
         public IEnumerable<EstudianteUdla> DevuelveListadoEstudiantes()
         {
-            throw new NotImplementedException();
+            var listadoEstudiantes = _connection.Table<EstudianteUdla>().ToList();
+            return listadoEstudiantes;
+            
         }
 
         public bool EliminarEstudianteUdla(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int eliminar = _connection.Delete(id);
+                if (eliminar > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            
         }
     }
 }
