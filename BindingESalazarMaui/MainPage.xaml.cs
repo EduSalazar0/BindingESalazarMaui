@@ -1,24 +1,33 @@
 ﻿using BindingESalazarMaui.Interfaces;
 using BindingESalazarMaui.Models;
 using BindingESalazarMaui.Repositories;
+using BindingESalazarMaui.ViewModels;
 
 namespace BindingESalazarMaui
 {
     public partial class MainPage : ContentPage
     {
-        IEstudianteUdlaRepository _estudianteUdlaRepository;
-        EstudianteUdla estudiante = new EstudianteUdla();
+        //IEstudianteUdlaRepository _estudianteUdlaRepository;
+        //EstudianteUdla estudiante = new EstudianteUdla();
 
         public MainPage()
         {
-            _estudianteUdlaRepository = new EstudianteUdlaSQLiteRepository();
-            InitializeComponent();
+            /*_estudianteUdlaRepository = new EstudianteUdlaSQLiteRepository();
+            
             //estudiante = _estudianteUdlaRepository.DevuelveEstudianteUdla();
             var estudiantesUDLA = _estudianteUdlaRepository.DevuelveListadoEstudiantes().ToList();
-            BindingContext = this;
-            
+            BindingContext = estudiante;*/
+            InitializeComponent();
+            var ViewModel = new EstudianteUdlaViewModel();
+            BindingContext = ViewModel;
+
+            ViewModel.ShowAlert += async () =>
+            {
+                await DisplayAlert("Alerta", "Se ha cambiado el mensaje", "Ok");
+            };
+
         }
-        private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
+        /*private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
         {
             EstudianteUdla estu = new EstudianteUdla
             {
@@ -40,7 +49,7 @@ namespace BindingESalazarMaui
                 Navigation.PushAsync(new MainPage());
             }
             
-        }
+        }*/
 
 
     }

@@ -51,13 +51,22 @@ namespace BindingESalazarMaui.Repositories
 
         public EstudianteUdla DevuelveEstudianteUdla(string id)
         {
-            var estudiantes = DevuelveListadoEstudiantes().ToList();
+            /*var estudiantes = DevuelveListadoEstudiantes().ToList();
             if(estudiantes.Any(item => item.Id == id))
             {
                 return estudiantes.Find(item => item.Id == id);
             }
 
-            return new EstudianteUdla();
+            return new EstudianteUdla();*/
+
+            try
+            {
+                return _connection.Get<EstudianteUdla>(id);
+            }
+            catch (Exception ex)
+            {
+                return new EstudianteUdla();
+            }
         }
 
         public IEnumerable<EstudianteUdla> DevuelveListadoEstudiantes()

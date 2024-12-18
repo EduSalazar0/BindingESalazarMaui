@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BindingESalazarMaui.ViewModels"
              x:Class="BindingESalazarMaui.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:EstudianteUdlaViewModel/>
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout
@@ -40,7 +45,7 @@
             <Button
                 x:Name="GuardarEstudiante"
                 Text="Guardar Estudiante"
-                Clicked="GuardarEstudiante_Clicked"/>
+                Command="{Binding CommandGuardarEstudianteUdla}"/>
         </VerticalStackLayout>
     </ScrollView>
 
